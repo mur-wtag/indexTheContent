@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.7'
 
+gem 'activerecord-import'
 gem 'doorkeeper'
 gem 'dotenv-rails'
 gem 'grape'
@@ -14,6 +15,7 @@ gem 'pg'
 gem 'rest-client'
 gem 'therubyracer'
 gem 'uglifier'
+gem 'wombat'
 
 group :development, :test do
   gem 'factory_girl_rails'
