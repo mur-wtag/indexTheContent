@@ -26,7 +26,7 @@ module V1
 
         desc 'Show Crawled content of a specific Query'
         get 'crawls/:id/results' do
-          crawl_query = CrawlQuery.find_by_id! resource_params[:id]
+          crawl_query = CrawlQuery.find_by_id! params[:id]
 
           present crawl_query.crawl_query_results, with: V1::Entities::IndexedContent
         end

@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+require 'json'
 RSpec.describe V1::Resources::WebContents do
   describe 'POST /web_contents/crawls' do
     let(:content_crawl_double) { instance_double(::WebContents::Crawl) }
@@ -65,6 +65,29 @@ RSpec.describe V1::Resources::WebContents do
         post request_url, valid_params, basic_authentication.merge('Accept-Version' => 'v1')
         expect(JSON.parse(response.body)).to eq('id' => 1331)
       end
+    end
+  end
+
+  describe 'GET /web_contents/crawls/:id/results' do
+    let!(:crawl_query_result) { FactoryGirl.create(:crawl_query_result) }
+    let(:query_id) { crawl_query_result.crawl_query.id }
+    let(:request_url) { "/api/web_contents/crawls/#{crawl_query_result.crawl_query.id}/results" }
+
+    let(:expected_response) do
+      [
+        {
+          query_id: query_id,
+          container_tag: crawl_query_result.container_tag,
+          content: crawl_query_result.content
+        }
+      ]
+    end
+
+    let(:parsed_response) { JSON.parse expected_response.to_json }
+
+    it 'returns crawled result' do
+      get request_url, {}, basic_authentication.merge('Accept-Version' => 'v1')
+      expect(JSON.parse(response.body)).to eq(parsed_response)
     end
   end
 end
