@@ -13,7 +13,6 @@ VCR.configure do |config|
   config.default_cassette_options = {
       record: ENV['VCR_RECORD'] ? :all : :once,
       re_record_interval: 20.years,
-      match_requests_on: [:method, :uri, :soap_request],
   }
 
   config.debug_logger = File.open('log/vcr.log', 'w') if ENV['VCR_DEBUG']

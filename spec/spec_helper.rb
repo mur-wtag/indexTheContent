@@ -65,9 +65,5 @@ RSpec.configure do |config|
   config.order = :random
   Kernel.srand config.seed
 
-  def gateway_vcr_options
-    { match_requests_on: [:method, :uri, :gateway_body] }
-  end
-
   config.include AuthHelper
 end

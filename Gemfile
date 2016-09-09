@@ -14,6 +14,7 @@ gem 'pg'
 gem 'rest-client'
 gem 'therubyracer'
 gem 'uglifier'
+gem 'wombat'
 
 group :development, :test do
   gem 'factory_girl_rails'
