@@ -85,9 +85,19 @@ RSpec.describe V1::Resources::WebContents do
 
     let(:parsed_response) { JSON.parse expected_response.to_json }
 
-    it 'returns crawled result' do
-      get request_url, {}, basic_authentication.merge('Accept-Version' => 'v1')
-      expect(JSON.parse(response.body)).to eq(parsed_response)
+    context 'with valid crawl_query' do
+      it 'returns crawled result' do
+        get request_url, {}, basic_authentication.merge('Accept-Version' => 'v1')
+        expect(JSON.parse(response.body)).to eq(parsed_response)
+      end
+    end
+
+    context 'with invalid crawl_query' do
+      let(:request_url) { '/api/web_contents/crawls/1331/results' }
+      it 'returns crawled result' do
+        get request_url, {}, basic_authentication.merge('Accept-Version' => 'v1')
+        expect(response.status).to eq(404)
+      end
     end
   end
 end
