@@ -20,6 +20,13 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'pronto'
+  gem 'pronto-rubocop', require: false
+  gem 'pronto-flay', require: false
+  gem 'pronto-brakeman', require: false
+  gem 'pronto-rails_best_practices', require: false
+  gem 'pronto-rails_schema', require: false
+  gem 'pronto-reek', require: false
 end
 
 group :test do
@@ -27,4 +34,5 @@ group :test do
   gem 'faker'
   gem 'shoulda-matchers', require: false
   gem 'webmock'
+  gem 'vcr'
 end
