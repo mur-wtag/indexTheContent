@@ -20,8 +20,8 @@ class Scraper
       base_url crawl_base_url
       path path
 
-      crawl_tags.each do |cc|
-        public_send(cc, {xpath: "//#{cc}"}, :list)
+      crawl_tags.each do |tag|
+        public_send(tag, {xpath: "//#{tag}"}, :list)
       end
     end
   end
