@@ -21,7 +21,7 @@ module V1
           crawl = ::WebContents::Crawl.new(crawl_parameters)
           crawl.results
 
-          present id: search.id
+          present id: crawl.id
         end
 
         desc 'Show Crawled content of a specific Query'
