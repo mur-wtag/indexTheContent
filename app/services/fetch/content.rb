@@ -8,7 +8,7 @@ module Fetch
     end
 
     def result
-      # TODO: Crawl Here
+      Scraper.call(crawl_url, tags)
     end
   end
 end

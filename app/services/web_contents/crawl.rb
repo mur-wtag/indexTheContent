@@ -23,8 +23,13 @@ module WebContents
     def crawl
       return @crawl if @crawl
       contents = Fetch::Contents.new(crawl_query.crawl_url, crawl_query.container_tags)
-      results = contents.results
-      build_query_result(results)
+      results = contents.result
+
+      @crawl = results.map do |tag, contents|
+        [contents].flatten.map do |content|
+          build_query_result(tag, content)
+        end
+      end
 
       @crawl
     end
@@ -34,10 +39,17 @@ module WebContents
       CrawlQueryResult.import(RESULT_FIELDS.dup, results, IMPORT_OPTIONS).ids
     end
 
-    def build_query_result(result)
+    def build_query_result(tag, content)
       result_values = []
       RESULT_FIELDS.each do |column|
-        value = result.fetch(column, nil)
+        value = case column
+                when :crawl_query_id
+                  crawl_query.id
+                when :container_tag
+                  tag
+                when :content
+                  content
+                end
         result_values << value
       end
 
