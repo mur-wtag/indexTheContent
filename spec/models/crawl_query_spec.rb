@@ -1,5 +1,5 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe CrawlQuery, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { is_expected.to validate_presence_of(:crawl_url) }
 end

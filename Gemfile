@@ -27,6 +27,7 @@ group :development, :test do
   gem 'pronto-rails_best_practices', require: false
   gem 'pronto-rails_schema', require: false
   gem 'pronto-reek', require: false
+  gem 'simplecov'
 end
 
 group :test do
