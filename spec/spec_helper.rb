@@ -9,7 +9,6 @@ end
 require 'rspec/rails'
 require 'factory_girl_rails'
 require 'database_cleaner'
-require 'shoulda/matchers'
 
 require 'vcr_setup'
 require 'webmock/rspec'
@@ -18,6 +17,13 @@ ActiveRecord::Migration.maintain_test_schema!
 
 Dir["#{Rails.root}/spec/support/**/*.rb"].each { |file| require file }
 
+require 'shoulda/matchers'
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
