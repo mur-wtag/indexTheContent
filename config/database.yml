@@ -1,0 +1,20 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: itc_development
+  pool: 5
+  template: template0
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: itc_test
+  pool: 5
+  template: template0
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: itc_production
+  pool: 5
+  template: template0
