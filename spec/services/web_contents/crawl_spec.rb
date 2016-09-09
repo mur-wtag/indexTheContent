@@ -57,4 +57,24 @@ RSpec.describe WebContents::Crawl do
       end
     end
   end
+
+  describe '#build_query_result' do
+    let(:tag) { 'h3' }
+    let(:content) { 'Join us at GitHub Universe' }
+    let(:result) do
+      {
+          tag => content,
+      }
+    end
+
+    let(:import_structure) do
+      {
+          values: [tag, content, instance.crawl_query.id],
+      }
+    end
+
+    subject { instance.build_query_result(result.keys[0], result.values[0]) }
+
+    it { expect(subject).to eq(import_structure) }
+  end
 end

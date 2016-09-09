@@ -21,12 +21,12 @@ module V1
           crawl = ::WebContents::Crawl.new(crawl_parameters)
           crawl.results
 
-          present id: search.id
+          present id: crawl.id
         end
 
         desc 'Show Crawled content of a specific Query'
         get 'crawls/:id/results' do
-          crawl_query = CrawlQuery.find_by_id! resource_params[:id]
+          crawl_query = CrawlQuery.find_by_id! params[:id]
 
           present crawl_query.crawl_query_results, with: V1::Entities::IndexedContent
         end
