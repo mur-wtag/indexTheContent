@@ -22,14 +22,14 @@ module WebContents
 
     def crawl
       return @crawl if @crawl
-      contents = Fetch::Contents.new(crawl_query.crawl_url, crawl_query.container_tags)
-      results = contents.result
+      html_source_api = HtmlSource::Api.new(crawl_query)
+      results = html_source_api.scrapped_content
 
       @crawl = results.map do |tag, contents|
-        [contents].flatten.map do |content|
+        [contents.reject(&:blank?)].flatten.compact.map do |content|
           build_query_result(tag, content)
         end
-      end
+      end.flatten.compact
 
       @crawl
     end

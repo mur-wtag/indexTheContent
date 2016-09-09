@@ -6,7 +6,7 @@ def uri_escaped_attribute(value)
 end
 
 VCR.configure do |config|
-  config.allow_http_connections_when_no_cassette = false
+  config.allow_http_connections_when_no_cassette = true
   config.hook_into :webmock
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.preserve_exact_body_bytes { false }
